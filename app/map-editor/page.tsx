@@ -7,7 +7,7 @@ import VectorSource from "ol/source/Vector";
 import {MapEditorProvider} from "@/lib/providers/MapEditorProvider";
 
 // Dynamically load to avoid SSR issues
-const MapEditor = dynamic(() => import("../../lib/ui/OpenLayersMapEditor"), {
+const MapEditor = dynamic(() => import("../../lib/ui/MapEditor"), {
     ssr: false,
 });
 
@@ -17,7 +17,7 @@ export default function MapEditorPage() {
 
 
     return (
-        <Box p={6}>
+        <Box p={6} w={"100%"} h="100%" bg="bg" color="text">
             <Heading size="lg" mb={4} color="text">
                 Geospatial Map Editor
             </Heading>

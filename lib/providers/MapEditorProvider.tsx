@@ -3,10 +3,13 @@ import {Feature} from "ol";
 import {MapEditorContext} from "@/lib/contexts/MapEditorContext";
 import {DrawType, TileType, ToolMode} from "@/types/map-editor";
 
-export function MapEditorProvider({
-                                          children,
-                                          vectorSource,
-                                      }: {
+/**
+ * @function MapEditorProvider
+ * @description A provider for the map editor context.
+ * @param children
+ * @param vectorSource - The vector source to be used in the map editor.
+ */
+export function MapEditorProvider({children, vectorSource}: {
     children: ReactNode;
     vectorSource: any;
 }) {

@@ -18,11 +18,11 @@ import {useMapEditor} from "@/lib/hooks/map-editor";
 
 
 /**
- * @function OpenLayersMapEditor
+ * @function MapEditor
  * @description A React component that renders an OpenLayers map editor with drawing capabilities.
  * It allows users to select different map styles and drawing types (Point, LineString, Polygon).
  */
-export default function OpenLayersMapEditor() {
+export default function MapEditor() {
 
     const mapRef = useRef<HTMLDivElement | null>(null);
     const mapInstance = useRef<Map | null>(null);
