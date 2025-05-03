@@ -13,11 +13,10 @@ const MapEditor = dynamic(() => import("../../lib/ui/MapEditor"), {
 
 export default function MapEditorPage() {
     if (typeof window === "undefined") return null;
-    const vectorSource = useRef(new VectorSource({wrapX: false})).current;
 
 
     return (
-        <Box p={6} w={"100%"} h="100%" bg="bg" color="text">
+        <Box p={6} w={"100%"} h="100%" bg="transparent" color="text">
             <Heading size="lg" mb={4} color="text">
                 Geospatial Map Editor
             </Heading>
@@ -34,9 +33,7 @@ export default function MapEditorPage() {
                 backdropFilter="blur(8px)"
                 borderColor="whiteAlpha.200"
             >
-                <MapEditorProvider vectorSource={vectorSource}>
                     <MapEditor/>
-                </MapEditorProvider>
             </Box>
 
         </Box>
