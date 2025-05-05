@@ -1,37 +1,38 @@
 'use client';
 
-import {VStack, Image, Text} from "@chakra-ui/react";
-// import {fetchNASADataSSR} from "@/lib/utils/nasa.server";
+import {VStack, Image, Text, HStack, Flex} from "@chakra-ui/react";
 import {useNasaData} from "@/lib/hooks/nasa";
 
+
+/**
+ * NASAData component fetches and displays the NASA image of the day.
+ * It uses the useNasaData hook to fetch data and displays it in a responsive layout.
+ * If data is not available, it shows a loading message or a no data message.
+ */
 export default function NASAData() {
-    // const data = await fetchNASADataSSR();
     const {data, loading} = useNasaData();
 
     return (
-        <VStack gap={4} bg="transparent" p={4}>
+        <VStack gap={4} bg="transparent" p={4} justifyContent="start" alignItems="start">
             <Text fontSize={'x-large'}>NASA Image of the Day</Text>
             {data ? (
-                <VStack
+                <HStack
                     gap={4}
                     p={4}
-                    borderWidth={1}
-                    borderRadius="lg"
-                    boxShadow="md"
                     bg="transparent"
-                    backdropFilter="blur(10px)"
-                    borderColor="whiteAlpha.200"
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
-                    justifyContent="center"
-                    textAlign="center"
                 >
-                    <Text fontSize={'x-large'}>{data.title}</Text>
-                    <p>{data.explanation}</p>
-                    <Image src={data.hdurl || data.url} alt={data.title}
-                           style={{maxWidth: "100%", maxHeight: 400, height: "auto"}}/>
-                </VStack>
+                    <Flex flex={1} alignItems="center" justifyContent="center">
+                        <Image
+                            src={data.hdurl || data.url}
+                            alt={data.title}
+                            style={{maxWidth: "100%", maxHeight: 400, height: "auto"}}
+                        />
+                    </Flex>
+                    <Flex flex={1}  direction="column" alignItems="center" justifyContent="center" gap={4}>
+                        <Text fontSize={'x-large'}>{data.title}</Text>
+                        <Text fontSize={'md'}>{data.explanation}</Text>
+                    </Flex>
+                </HStack>
             ) : loading ? (
                 <p>Loading...</p>
             ) : (
