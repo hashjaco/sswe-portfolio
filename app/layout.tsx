@@ -13,6 +13,7 @@ import StarfieldCanvas from "@/lib/ui/StarfieldCanvas";
 import 'primereact/resources/themes/lara-dark-teal/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import ProjectModal from "@/lib/ui/ProjectModal";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -31,17 +32,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{ children: ReactNode; }>) {
     return (
-        <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ position: "relative", overflowX: "hidden" }}>
-        <Provider>
-            <MistParticles />
-            <StarfieldCanvas />
-            <DarkModeToggle />
-            <NavBar/>
-            <Box as="main" p={8} position="relative" zIndex={1}>
-                {children}
-            </Box>
-        </Provider>
+        <html lang="en" suppressHydrationWarning>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}
+              style={{position: "relative", overflowX: "hidden"}}>
+            <Provider>
+                <MistParticles/>
+                <StarfieldCanvas/>
+                <DarkModeToggle/>
+                <NavBar/>
+                <Box as="main" p={8} position="relative" zIndex={1}>
+                    {children}
+                </Box>
+                <ProjectModal/>
+            </Provider>
         </body>
         </html>
     );

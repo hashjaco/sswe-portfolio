@@ -37,6 +37,9 @@ interface MapEditorContextProps {
 
     tileType: TileType;
     setTileType: Dispatch<SetStateAction<TileType>>;
+
+    menuOpen: boolean;
+    setMenuOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export const MapEditorContext = createContext<MapEditorContextProps | undefined>(undefined);

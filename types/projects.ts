@@ -4,6 +4,8 @@ export interface ProjectData {
     stack?: string[];
     cardImg?: string;
     images?: string[];
+    bucketDir?: string;
     github?: string;
     live?: string;
+    tags?: string[];
 }

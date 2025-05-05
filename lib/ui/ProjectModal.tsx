@@ -13,19 +13,27 @@ import {
 } from "@chakra-ui/react";
 import {motion, AnimatePresence} from "framer-motion";
 import {LuX, LuExternalLink} from "react-icons/lu";
-import {ProjectData} from "@/types/projects";
+import {useEffect} from "react";
+import {useProjectModal} from "@/lib/hooks/project-modal";
+import {fetchImages, getImageUrl} from "@/lib/utils/projects";
+import {useSupabase} from "@/lib/hooks/supabase";
+
 
 interface ProjectModalProps {
-    project: ProjectData;
-    isOpen: boolean;
-    onClose: () => void;
+
 }
 
-export default function ProjectModal(props: ProjectModalProps) {
-    const {project, isOpen, onClose} = props;
+
+export default function ProjectModal(_props: ProjectModalProps) {
+    const {selectedProject, setSelectedProject} = useProjectModal()
+    const client = useSupabase();
+    
+    if (!selectedProject) return null;
+
+    const {bucketDir, title, description, stack, github, live, images} = selectedProject;
+
     return (
         <AnimatePresence>
-            {isOpen && (
                 <motion.div
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
@@ -57,7 +65,7 @@ export default function ProjectModal(props: ProjectModalProps) {
                             top={4}
                             right={4}
                             size="lg"
-                            onClick={onClose}
+                            onClick={() => setSelectedProject(null)}
                             colorScheme="teal"
                             variant="ghost"
                         >
@@ -65,10 +73,10 @@ export default function ProjectModal(props: ProjectModalProps) {
                         </IconButton>
 
                         <VStack gap={6} align="start" mt={10}>
-                            <Heading size="2xl">{project.title}</Heading>
+                            <Heading size="2xl">{title}</Heading>
 
                             <HStack gap={2} flexWrap="wrap">
-                                {project.stack?.map((tech) => (
+                                {stack?.map((tech) => (
                                     <Badge key={tech} size="md" variant="subtle" colorScheme="teal">
                                         {tech}
                                     </Badge>
@@ -76,27 +84,27 @@ export default function ProjectModal(props: ProjectModalProps) {
                             </HStack>
 
                             <Text fontSize="md" maxW="3xl">
-                                {project.description}
+                                {description}
                             </Text>
 
                             <HStack gap={4}>
-                                {project.github && (
-                                    <ChakraLink href={project.github}>
+                                {github && (
+                                    <ChakraLink href={github}>
                                         <LuExternalLink/> GitHub
                                     </ChakraLink>
                                 )}
-                                {project.live && (
-                                    <ChakraLink href={project.live}>
+                                {live && (
+                                    <ChakraLink href={live}>
                                         <LuExternalLink/> Live Demo
                                     </ChakraLink>
                                 )}
                             </HStack>
 
-                            {project.images?.map((src, i) => (
+                            {bucketDir && images?.map((src, i) => (
                                 <Image
                                     key={i}
-                                    src={src}
-                                    alt={`${project.title} screenshot ${i + 1}`}
+                                    src={getImageUrl(bucketDir, src)}
+                                    alt={src}
                                     borderRadius="md"
                                     maxH="360px"
                                     objectFit="cover"
@@ -105,7 +113,6 @@ export default function ProjectModal(props: ProjectModalProps) {
                         </VStack>
                     </Box>
                 </motion.div>
-            )}
         </AnimatePresence>
     );
 }
