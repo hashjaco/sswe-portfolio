@@ -1,11 +1,10 @@
-// app/components/Hero.tsx
 "use client";
 
-import { Heading, Text, Button, VStack, HStack, Icon } from "@chakra-ui/react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { LuArrowDown } from "react-icons/lu";
+import {Heading, Text, Button, VStack, HStack, Icon} from "@chakra-ui/react";
+import {motion, useScroll, useTransform} from "framer-motion";
+import {LuArrowDown} from "react-icons/lu";
 import Link from "next/link";
-import { useRef } from "react";
+import {useRef} from "react";
 
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
@@ -15,7 +14,7 @@ const MotionVStack = motion(VStack);
 
 export default function Hero() {
     const ref = useRef(null);
-    const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+    const {scrollYProgress} = useScroll({target: ref, offset: ["start start", "end start"]});
 
     const y = useTransform(scrollYProgress, [0, 1], [0, 100]); // slight downward shift as you scroll
 
@@ -24,10 +23,10 @@ export default function Hero() {
             ref={ref}
             gap={8}
             textAlign="center"
-            py={{ base: 24, md: 36 }}
+            py={{base: 24, md: 36}}
             position="relative"
             zIndex={1}
-            style={{ y }}
+            style={{y}}
         >
             {/* Main Heading */}
             <MotionHeading
@@ -35,9 +34,9 @@ export default function Hero() {
                 size="4xl"
                 fontWeight="extrabold"
                 color="text"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
+                initial={{opacity: 0, y: 40}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 1}}
             >
                 Hashim — Fullstack Engineer
             </MotionHeading>
@@ -47,42 +46,42 @@ export default function Hero() {
                 fontSize="xl"
                 color="text"
                 maxW="2xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
+                initial={{opacity: 0, y: 20}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 1, delay: 0.5}}
             >
                 Creating worlds between the voids of stars.
             </MotionText>
 
             {/* Call To Actions */}
             <HStack gap={6} mt={8}>
-                <MotionButton
-                    as={Link}
-                    href="/projects"
-                    size="lg"
-                    bg="brand.500"
-                    variant="solid"
-                    px={2}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 1 }}
-                >
-                    View Projects
-                </MotionButton>
+                <Link href={'/projects'}>
+                    <MotionButton
+                        size="lg"
+                        bg="brand.500"
+                        variant="solid"
+                        px={2}
+                        initial={{opacity: 0, scale: 0.8}}
+                        animate={{opacity: 1, scale: 1}}
+                        transition={{duration: 0.6, delay: 1}}
+                    >
+                        View Projects
+                    </MotionButton>
+                </Link>
 
-                <MotionButton
-                    as={Link}
-                    href="/contact"
-                    size="lg"
-                    variant="outline"
-                    colorScheme="teal"
-                    px={2}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 1.2 }}
-                >
-                    Contact Me
-                </MotionButton>
+                <Link href={'/contact'}>
+                    <MotionButton
+                        size="lg"
+                        variant="outline"
+                        colorScheme="teal"
+                        px={2}
+                        initial={{opacity: 0, scale: 0.8}}
+                        animate={{opacity: 1, scale: 1}}
+                        transition={{duration: 0.6, delay: 1.2}}
+                    >
+                        Contact Me
+                    </MotionButton>
+                </Link>
             </HStack>
 
             {/* Down Arrow */}
@@ -92,8 +91,8 @@ export default function Hero() {
                 h={8}
                 mt={16}
                 color="text"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.8 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 0.8}}
                 transition={{
                     delay: 2,
                     duration: 1,
