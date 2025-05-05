@@ -15,6 +15,7 @@ import "ol/ol.css";
 import {click} from "ol/events/condition";
 import EditorSidebar from "@/lib/ui/MapEditorSidebar/MapEditorSidebar";
 import {useMapEditor} from "@/lib/hooks/map-editor";
+import MapEditorSpeedDialToolbar from "@/lib/ui/MapEditorSpeeddialToolbar/MapEditorSpeedDialToolbar";
 
 
 /**
@@ -37,6 +38,7 @@ export default function MapEditor() {
         setSelectedFeature,
         toolMode,
         tileType,
+        menuOpen
     } = useMapEditor();
 
     const selectRef = useRef<OlSelect | null>(null);
@@ -141,6 +143,15 @@ export default function MapEditor() {
             if (interaction instanceof Draw) map.removeInteraction(interaction);
         });
 
+        if (menuOpen){
+            // disable map interactions so that clicks don't trigger map events
+            map.getInteractions().forEach((interaction) => {
+                if (interaction instanceof OlSelect) interaction.setActive(false);
+                if (interaction instanceof Draw) interaction.setActive(false);
+            });
+            return;
+        }
+
         const draw = getDraw()
         map.addInteraction(draw);
 
@@ -157,10 +168,10 @@ export default function MapEditor() {
 
             setFeatures((prev) => [...prev, e.feature]);
         });
-    }, [drawType]);
+    }, [drawType, menuOpen]);
 
     return (
-        <Box position="relative" w="100%" h="500px" borderRadius="xl" overflow="hidden">
+        <Box position="relative" bg={'transparent'} w="100%" h="500px" borderRadius="xl" overflow="hidden">
             <div ref={mapRef} style={{
                 position: "absolute",
                 inset: 0,
@@ -168,7 +179,8 @@ export default function MapEditor() {
                 height: "100%",
                 zIndex: 0,
             }}/>
-            <EditorSidebar/>
+            {/*<EditorSidebar/>*/}
+            <MapEditorSpeedDialToolbar />
         </Box>
     );
 }

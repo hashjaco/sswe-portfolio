@@ -21,6 +21,7 @@ export function MapEditorProvider({children, vectorSource}: {
     const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
     const [toolMode, setToolMode] = useState<ToolMode>("draw");
     const [tileType, setTileType] = useState<TileType>("osm");
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <MapEditorContext.Provider
@@ -42,6 +43,8 @@ export function MapEditorProvider({children, vectorSource}: {
                 setToolMode,
                 tileType,
                 setTileType,
+                menuOpen,
+                setMenuOpen,
             }}
         >
             {children}
