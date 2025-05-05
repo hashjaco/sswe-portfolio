@@ -1,29 +1,7 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import ProjectCard from "@/lib/ui/ProjectCard";
 import StarfieldCanvas from "@/lib/ui/StarfieldCanvas";
-
-const projects = [
-    {
-        title: "GIS Editor with OpenLayers",
-        description: "An interactive editor for geospatial data.",
-        tags: ["React", "TypeScript", "OpenLayers"]
-    },
-    {
-        title: "Security MDR Dashboard",
-        description: "Real-time monitoring dashboard for security events.",
-        tags: ["React", "TypeScript", "Chakra UI"]
-    },
-    {
-        title: "Sneaker Reseller Price Tracker",
-        description: "A multi-platform price tracker for sneaker enthusiasts.",
-        tags: ["React", "Web Scraping"]
-    },
-    {
-        title: "PetStore Expo App",
-        description: "A feature-rich expo app for pet store management.",
-        tags: ["React", "Expo", "CI/CD"]
-    }
-];
+import {projects} from "@/lib/constants/projects";
 
 export default function Projects() {
     return (
@@ -34,7 +12,7 @@ export default function Projects() {
             </Heading>
             <SimpleGrid columns={[1, 2, 3]} gap={10}>
                 {projects.map((project, i) => (
-                    <ProjectCard key={i} project={project} />
+                    <ProjectCard key={JSON.stringify(project)} idx={i} project={project} animate={true} />
                 ))}
             </SimpleGrid>
         </Box>

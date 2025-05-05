@@ -1,12 +1,12 @@
-// app/map-editor/layout.tsx
 "use client";
 
 import {ReactNode, useRef} from "react";
-import {Box, Button, Flex, HStack, Spacer, Text} from "@chakra-ui/react";
+import {Box, Button, Flex, HStack, Text} from "@chakra-ui/react";
 import Link from "next/link";
 import {MapEditorProvider} from "@/lib/providers/MapEditorProvider";
 import VectorSource from "ol/source/Vector";
 import ExportButton from "@/lib/ui/Exporter";
+import ImportButton from "@/lib/ui/Importer";
 
 
 export default function MapEditorLayout({children}: { children: ReactNode }) {
@@ -14,7 +14,7 @@ export default function MapEditorLayout({children}: { children: ReactNode }) {
 
     return (
         <MapEditorProvider vectorSource={vectorSource}>
-            <Flex direction="column" h="100vh" bg="black">
+            <Flex direction="column" h="100vh" bg="transparent">
                 {/* Top Navigation Bar */}
                 <Box
                     as="header"
@@ -42,7 +42,9 @@ export default function MapEditorLayout({children}: { children: ReactNode }) {
                         </HStack>
 
                         <HStack gap={2}>
+                            <ImportButton />
                             <ExportButton />
+
                         </HStack>
                     </HStack>
                 </Box>
