@@ -15,11 +15,9 @@ export function Provider(props: ColorModeProviderProps) {
     return (
         <SupabaseProvider>
             <ChakraProvider value={system}>
-                <ColorModeProvider>
                     <ProjectModalProvider>
                         {children}
                     </ProjectModalProvider>
-                </ColorModeProvider>
             </ChakraProvider>
         </SupabaseProvider>
     )

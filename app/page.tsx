@@ -7,10 +7,10 @@ import FeaturedProjects from "@/lib/ui/FeaturedProjects";
 export default function Home() {
     return (
         <MotionWrapper>
-                <Hero />
-                <AboutMe />
-                <WhatIOffer />
-            <FeaturedProjects />
+            <Hero/>
+            <AboutMe/>
+            <WhatIOffer/>
+            <FeaturedProjects/>
         </MotionWrapper>
     );
 }
