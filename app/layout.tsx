@@ -1,19 +1,19 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
 import {ReactNode} from "react";
-import "../styles/globals.css";
+import {Box} from "@chakra-ui/react";
+import {Geist, Geist_Mono} from "next/font/google";
 
 import {Provider} from "@/lib/ui/Provider";
 import NavBar from "@/lib/ui/NavBar";
-import {Box} from "@chakra-ui/react";
 import DarkModeToggle from "@/lib/ui/DarkModeToggle";
 import MistParticles from "@/lib/ui/MistParticles";
 import StarfieldCanvas from "@/lib/ui/StarfieldCanvas";
+import ProjectModal from "@/lib/ui/ProjectModal";
 
 import 'primereact/resources/themes/lara-dark-teal/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import ProjectModal from "@/lib/ui/ProjectModal";
+import "../styles/globals.css";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -36,8 +36,8 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode; }
         <body className={`${geistSans.variable} ${geistMono.variable}`}
               style={{position: "relative", overflowX: "hidden"}}>
             <Provider>
-                <MistParticles/>
                 <StarfieldCanvas/>
+                <MistParticles/>
                 <DarkModeToggle/>
                 <NavBar/>
                 <Box as="main" p={8} position="relative" zIndex={1}>

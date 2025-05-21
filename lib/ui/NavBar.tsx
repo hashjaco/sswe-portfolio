@@ -20,7 +20,6 @@ export default function NavBar() {
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },
         { label: "Projects", href: "/projects" },
-        { label: "Astronomy", href: "/astronomy-zone" },
         { label: "Contact", href: "/contact" },
     ];
 

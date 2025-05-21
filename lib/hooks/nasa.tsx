@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 import {NasaArticle} from "@/types/nasa";
 
 /**
@@ -9,7 +9,7 @@ export function useNasaData() {
     const [data, setData] = useState<NasaArticle | null>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const worker = new Worker(new URL("@/lib/workers/nasa.worker.ts", import.meta.url));
 
         worker.onmessage = (e) => {
