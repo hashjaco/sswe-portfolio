@@ -58,12 +58,16 @@ export default function Hero() {
                 <Link href={'/projects'}>
                     <MotionButton
                         size="lg"
-                        bg="brand.500"
+                        bg="brand.600"
                         variant="solid"
                         px={2}
                         initial={{opacity: 0, scale: 0.8}}
                         animate={{opacity: 1, scale: 1}}
                         transition={{duration: 0.6, delay: 1}}
+                        _hover={{
+                            bg: "brand.400",
+                            color: "white",
+                        }}
                     >
                         View Projects
                     </MotionButton>
@@ -78,6 +82,10 @@ export default function Hero() {
                         initial={{opacity: 0, scale: 0.8}}
                         animate={{opacity: 1, scale: 1}}
                         transition={{duration: 0.6, delay: 1.2}}
+                        color={'white'}
+                        _hover={{
+                            color: "black"
+                            }}
                     >
                         Contact Me
                     </MotionButton>
